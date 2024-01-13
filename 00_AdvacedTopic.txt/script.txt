@@ -1,0 +1,325 @@
+/---------- Topics that covered in txt file ----------/
+js 
+- word vs keyword
+- var const let
+-- the Difference
+-- window object
+-- browser context api
+-- stack
+-- heap memory
+-- execution conetext
+-- lexical environment
+- hoisting
+- types in js
+-- how to copy reference values
+- conditionals
+- if else else-if
+-- truthy vs falsy
+-- switch
+- loops
+- for loop
+-- foreach forin forof do-while
+- functions
+-- callback functions
+-- what is first class functions
+- params, arguments
+- arrays
+- push pop shift unshift
+-- how arrays are made behind the scenes
+-- why we can make negative indexes arrays in js
+- objects
+- props vs methods
+- updating object props
+-- how to delete object prop
+
+
+/#############################################################################/
+
+
+Javascript is divided into 2 way
+    ---> ES5
+    ---> ES6
+
+(1) ES5 has --> var(2015)
+(2) ES6 has --> let and const(2015 to till now)
+
+/**************************/
+Two importance point
+1. Scoping of variables
+2. Immutability of data types
+
+let & const are block scoped not function scoped unlike var in Javascript
+// Let vs const
+const --> immutable value, once assigned cannot be changed
+let   --> mutable value, can change the value after assignment
+// Syntax
+const name = "John";
+let age = 30;
+
+// Difference between var, let and const
+var x = 10;            // It can be redeclared by using same variable
+// But it's not a good practice because you will lose initial value
+x = 20;               // This line is valid but it's not recommended as per 
+// best coding practices
+let y = 10;           // You can declare another variable with the same name
+y = 20;              // This is allowed
+// In case if we try to do this then it will give an error
+console.log(y);      // Output: 20
+// Constants should have values that don’t change during the execution of the program.
+
+/*****************************/
+// Example code for understanding how 'let' works
+for (let i=0; i<5; i++) {
+    console.log(`Value of i at iteration ${i}: ${i}`);
+    }
+    /*
+    Value of i at iteration 0: 0
+    Value of i at iteration 1: 1
+    Value of i at iteration 2: 2
+    Value of i at iteration 3: 3
+    Value of i at iteration 4: 4
+    */
+
+/* If we remove ‘let’ from above loop then output would be like below
+Value of i at iteration 0: 0
+Value of i is already defined at iteration 0: 1
+Value of i at iteration 1: 1
+Value of i is already defined at iteration 1: 2
+Value of i at iteration 2: 2
+Value of i is already defined at iteration 2: 3
+Value of i at iteration 3: 3
+Value of i is already defined at iteration 3: 4
+*/
+
+/-------------------------------------/
+        Quick learn
+    
+        var--> function scoped hota hai 
+        => var apne parent fun mein kahi bhi use ho sakta hain
+        => var adds itself to the window object
+           -->important point ===> js language mein kuch cheeje nahi hai jo hum use kar sakte hai 
+                                   aur wo cheeje hume js se nahi balki browser se milti hai, 
+                                   aisi saare features jo js ka part nahi hain but fir bhi hum 
+                                   use kar sakte hai | unhe hum dhoond sakte hai ek particular 
+                                   object me use kehte hai window.
+
+        /-----Example-----/
+           var a = 12;
+           /* window par a add ho gaya */
+
+        let--> braces scoped | block scoped hota ha
+        => let and const doesn't adds itself to the window object
+
+        /-----Example-----/
+           let b = 12;
+           /* window par b add nahi hua hai */
+
+        -- browser context api🌐🌐
+        browser gives three things that known as browser context api
+          that is --> (1) window
+                  --> (2) stack 
+                  --> (3) heap memory
+
+        -- stack means konsi chiz kaise chalegi 
+           Definition-->  Stack is a linear data structure in which the addition or removal 
+                          of an element follows a particular order i.e. LIFO(Last in First Out) 
+                          AND FILO(First in Last Out).
+
+       // Jitne bhi data hum baanaate hai unhe store kahi to karna padta hai, uske liye hota hai heap memory
+        -- heap 
+           Definition--> The heap is a different space for storing data where JavaScript stores 
+           objects and functions. Unlike the stack, the engine doesn't allocate a fixed amount of
+           memory for these objects. Instead, more space will be allocated as needed. 
+
+        -- execution conetext 🗒️🗒️
+           means--> jabh bhi hum function chaalaayenge fun apna ek khuka imaginary conatiner bana lenga jisme uske tin (3) cheeje hogi:
+            // (1) variables
+            // (2) functions inside that parent func
+            // (3) lexical environment of that function (lexical environment means kin cheejo ko use kar sakte ho)
+            //--> yeh jo container hai imaginary ise hi hum execution conetxt kahte hai
+
+            Example--> 
+            functon executionConetxt(){
+                var a = 34;
+                function def(){
+                    var b = 23;
+                }
+            }
+
+            => Definition => execution Context is a container where the function's code is executed and it's created whenever 
+                            a function is called, it contains 3 things-> variable, functions and lexical environment.
+
+        -- lexical environment 
+            lexical environment hota hai ek chart jisme yeh likha hota hai ke aapka particular function ki cheejo ko 
+            access kar sakta hai and kinko nahi, matlab ki it holds it's scope and scope chain
+
+            Definition: The lexical environment is an important concept in JavaScript because it helps to explain how 
+                        closures work. Closures are functions that can access variables from their outer scopes, 
+                        even after the outer scopes have returned.
+
+            another One: In JavaScript, a lexical environment is a structure that holds the mapping of identifiers 
+                        (like variable names) to specific values. It consists of an environment record 
+                        (storing variable and function declarations) and a reference to an outer environment, 
+                        establishing a scope chain.
+
+        -- how to copy reference values
+        Example 
+                var a = [1,2,3,4];
+                var b = 1;
+                b.pop();
+
+        -->   var a = [1,2,3,4,5];
+              var b = [...a]; // Here 3 dots(.) called spread operator
+
+              b.pop();
+
+              //The spread operator is a JavaScript operator that allows you to expand the elements of an iterable 
+               (such as arrays, strings, or objects) into another iterable or function call. It is denoted by 
+               three dots “ ... ” followed by an expression or an iterable.
+
+            how to copy in array
+            var a = [1,2,3,4,5,6,7];
+            var b = [...a];
+
+            how to copy in objects
+            var obj = {
+                name: "Anya",
+                age: 20
+            };
+
+            var copyobj = {...obj};
+            // change
+            copyobj.name = "forger";
+
+        -- truthy vs falsy
+         Definiton: When non-boolean values are used in a boolean context, such as the condition of an if statement, 
+                    they will be coerced into either true or false . Values that are coerced into true are called truthy
+                    and values that are coerced into false are called falsy.
+
+                    A truthy value is a value that is considered True when used in a boolean context. A falsy value is a 
+                    value that is considered False when used in a boolean contex.
+
+            🙌Falsy value : 0, false, undeined, null, NaN, document.all
+            🙌Truthy Value : All other values except for Null , Undefined , NaN , 0.
+
+            Example -->
+            if(NaN){
+                console.log("okay");
+            }
+            else {
+                console.log("Bye");
+            }
+
+            output is: Bye👋
+
+        -- foreach forin forof do-while
+        // foreach loop shirf array par chalta hai matlab ki jab bhi tumhare paas ek array ho, tab use mein kaun aata hai foreach loop
+
+        var a = [1,2,3,45,67,8,9,34,21,56,63,83,22];
+
+        a.forEach(function(val){
+            console.log(val+2);
+        })
+
+        //--> forEach kabhi bhi by default aapke mein array me change nahi karta wo aapko changes karke deta hai array ki temporary 
+            copy par jiske wajah se array humesha same rehta hai.
+
+        -- forin 
+        // objects par loop karne ke liye hota hain forin loop
+
+        var obj  = {
+            name: "Anya",
+            Age: 5,
+            city: "Ostania"
+        };
+
+        for(var key in obj){
+            console.log(`Key : ${key} , Value : ${obj[key]}`);
+            //console.log(obj[key]);
+        }
+
+        // output Key : name , Value : Anya
+                  Key : Age , Value : 5
+                  Key : city , Value : Ostania
+
+    
+       -- call functions
+       // jabh bhi koi aisa code jo baad me chalta hai,kyuki vo code 
+       baad me chalta hai, js ko yeh pata nahi hota ki vo complete hua hai 
+       ya nahi, aise code ke completion par js ko bataya jata hai ki wo complete ho gaya
+       aur aap use use chala sakte ho, yh bataane ka kaam callback function ka hota hai
+
+       setTimeOut(function(){
+
+       }, 2000);
+
+       // aisa code jo baad me chalta hai use ek function de dete hai ke bhaiya jab complete 
+       hojana to yeh function chala dena, aur vo function jo hum dete hai vo ek normal function 
+       hi hota hai aur use kehte hai callback function.
+
+
+       -- what is first class function
+       // js me ek concept hai jiska matlab hota hai ki, functions ko use kar sakte ho as a value.
+
+       var a = function(){
+
+       };
+
+       like: 
+        function like(a){
+            a();
+        }
+
+        like(function(){
+          console.log("Anya");
+        });
+
+    -- how arrays are made behind the scenes
+    var arr = [12,21,34,45,50];
+    console.log(typeof arr); // object
+
+    arr = {
+        0: 12,
+        1: 21,
+        2: 34,
+        3: 45,
+        4: 50
+    }
+
+    // how to know which one is object and array
+    Array.isArray([]); // true
+    Array.isArray({}); // False
+
+  -- why we can make negative indexes arrays in js
+   var arr = [12,21,34,45,50];
+   console.log(typeof arr); // object
+
+    arr = {
+        0: 12,
+        1: 21,
+        2: 34,
+        3: 45,
+        4: 50
+    }
+
+    but, 
+    arr[-1] = 2;
+
+    output:  arr = {
+                        0: 12,
+                        1: 21,
+                        2: 34,
+                        3: 45,
+                        4: 50,
+                        -1: 2
+                    }
+
+
+   -- how to delte object prop
+   var a = {
+    name : "Anya",
+    age : 5
+   }
+
+   delete a.age;
+   delete a.name;
