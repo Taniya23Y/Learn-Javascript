@@ -1,7 +1,7 @@
 // const variable
 
 // Constant Arrays
-//--> you can change the elements of constant array.
+// --> you can change the elements of constant array.
 
 // Example:
 
