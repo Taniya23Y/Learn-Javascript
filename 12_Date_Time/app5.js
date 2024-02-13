@@ -8,6 +8,7 @@
 
 // Get the Current Time
 const date = new Date();
+console.log(date);
 
 //=====================================================
 
