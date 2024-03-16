@@ -1,0 +1,321 @@
+// some more Javascript topic
+
+-- higher order fncs ✅
+-- constructor fncs ✅
+-- first class fncs ✅
+-- new keyword ✅
+-- life ✅
+-- prototype ✅
+-- prototypal inheritance ✅
+-- this call apply bind ✅
+-- pure and impure fncs ✅
+-- closures ✅
+ 
+/######################################################/
+
+/****************  Higher order functions ****************/ 
+
+Higher order are the functions which accepts A function in A parameter or Return A function or Both.
+Example-->
+        (1) 1st way is: you create a function, and while calling it, you pass a function as a parameter.
+        function abcd(val){
+
+        }
+   
+        abcd(function(){});
+
+        (2) 2nd way is: if any function returns from within itself, if any function returns
+        function abcd(val){
+            return function(){};
+        }
+   
+        abcd(function(){});
+
+        The above two functions --> (higher order functions) are written in real world, when we make closures.
+
+        // explaination: aisa function jo accept karle ek aur function ya fir wo return karde ek aur function.
+        Tip: For Example-> ForEach Method always takes another function inside it, so ForEach is a Higher Order function.
+          Demo: 
+              var arr = [1,2,3,4,5];
+
+              arr.forEach(function(){});
+
+/**********************************************************************************************/
+     
+/****************  constructor functions ****************/ 
+function manufacture(){
+  //this refers to the object being created by using new keyword '
+  this.width = 12;
+  this.height = 22;
+  this.color = "brown";
+  this.taste = "sugary";
+}
+//new manufacture();
+var manuf1 = new manufacture();
+var manuf2 = new manufacture();
+var manuf3 = new manufacture();
+
+// normal fnc jisme this ka use ho and aap function ko call karte time new keyword ka use kare.
+
+// why we use constructor function
+----> jab aapke pass aisa koi bhi mauka ho ke apko ek jaisi properties wale abhut saare elements banana
+      hai us waqt aap constructor gun use kar sakte hain
+
+      // Example:-
+        function circularButtonBanao(color){
+          this.radius = 2;
+          this.color = "color";
+          this.icon = false;
+          this.radius = true;
+        }
+
+        var redbtn = new circularButtonBanao("red");
+        var greenbtn = new circularButtonBanao("green");
+
+    //----> Definition of constructor function:-
+    A function which whenever invoked with "New" Keyword, Returns An object, 
+    if we use "This" keyword inside that function, it returns an object with all of the properties 
+    and methods mentioned inside that function, such functions is called constructor function.
+
+    example:- function abcd(){ -------|
+      this.name = "Annie";            |   constructor function
+    }                         --------|
+
+    var person1 = new abcd();
+                   ⬆️
+                new keyword infront function 
+                call makes a new blank object 
+                and returns to the person1 variable.
+              
+/**********************************************************************************************/
+
+/****************  first class functions ****************/ 
+
+  what is first call function?
+---> A language is said to have first class function when the function in that language are treated as variable| normal values, you 
+can solve them, you can pass them as arguments to another functions.
+
+function abcd(){
+
+}
+
+var abcd = function (){}
+
+/**********************************************************************************************/
+
+/***************************  New keyword **********************/ 
+// new => jab bhi new lagta hai humesha ek blank object apne man mein bana lo
+{
+
+}
+
+function abcd(){
+  this.age = 12;
+}
+
+new abcd()
+
+// in mind
+{
+  age: 12;
+}
+
+/**********************************************************************************************/
+
+/***************************  IIFE     **********************/ 
+
+//iife => immediately invoked function expression
+// iife hai function ko turant chalane ki kala, is tareeke se ki hum log koi private variable bana paaye.
+
+(function(){
+  var privateValue = 12;
+
+  return {}
+})();
+
+var ans = (function(){
+  var privateValue = 12;
+
+  return {
+    getter: function(){
+      console.log(privateValue);
+    },
+    setter: function(val){
+      privateValue = val;
+      console.log()
+    }
+  }
+})();
+
+
+/**********************************************************************************************/
+
+/***************************  prototype     **********************/ 
+
+Go to Browse console and create an object:
+
+const obj = {
+  name: "annie"
+}
+
+& now Type Object Name followed  with a dot operator:
+
+obj.name // we created name but some other properties are not created that shown in browser so, where do they come from,
+            that's where the concept of prototype comes in, every created gets a property called prototype, which means whenever you create
+            object it gets prototype property automatically.
+
+          [   Where it came from?    ]
+        Javascript by default adds a property called [[prototype]] to every object, so if you ever see any object, you can
+        blindly say that object contains prototype, so now, what does it contains?
+
+          [   so what does it contain?  ]
+        [[prototype]] contains many helper properties and methods which we can use to complete our task, let's say we create an array and we
+        do, we use .length property on array, did we created .length on that array, no! but it still contains .length, the question is how?
+
+        the answer is:- many properties and methods are already available to use built by js creators inside prototype of every objects
+
+/**********************************************************************************************/
+
+/***************************  prototype     **********************/ 
+ 
+For example:- shinchan ke papa 
+                he's human
+                he's got a last name
+                he's got round eyebrows
+
+              shinchan 
+               because shinchan is his papa's son, he inherits
+               or we can say contains properties of his papa, example, shinchan is also
+               human, he also has same last name and he also gets round eyebrows.
+                
+              This is called Inheritance.
+
+      But, what about prototypal inheritance?
+       that's exactly what we're going to talk about now, inheritance is basically passing parent features
+       or properties to their childrens, to do the same thing in js with the help of prototype(one extra 
+       property always given by js to every object) is called prototypal inheritance
+
+       So, how we perform prototypal inheritance
+
+      var human = {
+        name: "annie",
+        canFly: false,
+        canTalk: true,
+        willDie: true
+      }
+
+      make another human object, he/she can do all things which a human can do but he/she can do few more 
+      things like, he/she can solve js questions and create modern websites, so we create extra two props 
+      which normal human can't do in that object and rest properties we will inherit from human.
+
+      var student = {
+        solveJsQuestion: true,
+        createModernWebsite: true
+      }
+
+      ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+      |-------------------------------------|
+      |   student.__proto__ = human;        |
+      |-------------------------------------|
+
+/**********************************************************************************************/
+
+/***************************  this call apply bind     **********************/ 
+
+Understanding Tis Keyword
+---> this keyword is a special keyword in js which changes it's value in different context.
+
+------------- Let's see "this" keyword in different context:
+in global scope
+    console.log(this);    gives    window
+
+in function scope
+    function abcd(){
+      console.log(this);    gives    window
+    }
+
+in method scope
+    var obj = {
+      name: "annie",
+      sayMyName : function (){
+        console.log("my name is ",  this.name);   gives object obj
+      }
+    }
+
+// global = window
+// function = window
+// method = object
+
+--> In any method, "this" keyword always refers to parent object.
+
+================== Event listners =======================
+var button = document.querySelector("button");
+button.addEventListner("click", function(){
+  console.log(this);
+})            ⬆️⬆️ 
+               this keyword is equal to whatever written 
+               before addEventListner, in this case button.
+
+
+// call apply bind => agar tumhare pass koi function hai and koi object hai and 
+                      tumhe func chalana hai aur by default jo this ki value window 
+                      hai use window na rakh kar pint karvana hai kisi object ki tarah.
+// call
+function abcd(){
+  console.log(this.age); // window--> obj
+}
+
+var obj = {age: 24}
+
+abcd.call(obj); // this is now obj
+
+// example 2
+function abcd(val1, val2, val3){
+  console.log(this,val1, val2, val3); // window--> obj
+}
+
+var obj = {age: 24}
+
+abcd.call(obj,1,2,3); // this is now obj
+
+// apply
+function abcd(val1, val2, val3){
+  console.log(this,val1, val2, val3); // window--> obj
+}
+
+var obj = {age: 24}
+
+abcd.call(obj,1,2,3); // this is now obj
+
+abcd.apply(obj, [1,2,3]); // this is now obj
+
+//----> call,apply, bind => jabh bhi apko ek function chalana hai jisme this ki value kuch or hai 
+                            par aap chahte ho this ki value kuch or object rahe tabh call, apply blind use hote hain.
+
+// bind
+function abcd(){
+  console.log(this.age); // window--> obj
+}
+
+var obj = {age: 24}
+
+var bindedFunction = abcd.bind(obj); // this is now obj
+bindedFunction();
+// answer is nothing.
+
+/**********************************************************************************************/
+
+/***************************  pure nad impure functions     **********************/ 
+
+Understanding pure function->
+Pure function is any function which has these 2 features:
+(1) it should always return same output for same input
+(2) it will never change/update the value of a global variable.
+
+function calc(val){
+  return val+2;
+}        ⬆️⬆️
+        always same answer if you pass same value for 'val' argument,
+        hence this function is pure function.
+calc(2);
+calc(2);
