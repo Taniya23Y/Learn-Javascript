@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <body style="background-color: #212121; color: #fff">
+    <ul class="language">
+      <li>Javascript</li>
+    </ul>
+  </body>
+  <script>
+    function addLanguage(langName) {
+      const li = document.createElement("li");
+      li.innerHTML = `${langName}`;
+      document.querySelector(".language").appendChild(li);
+    }
+    addLanguage("Ruby");
+    addLanguage("typescript");
+    addLanguage("c++");
+
+    // optimize
+    function addOptimizeLanguage(langName) {
+      const li = document.createElement("li");
+      li.appendChild(document.createTextNode(langName));
+      document.querySelector(".language").appendChild(li);
+    }
+    addOptimizeLanguage("swift");
+    addOptimizeLanguage("golang");
+
+    // value edits
+    const secLang = document.querySelector("li:nth-child(2)");
+    //secLang.innerHTML = "Kotlin";
+    const newLi = document.createElement("li");
+    newLi.textContent = "Kotlin";
+    secLang.replaceWith(newLi);
+
+    //edit js-ts
+    const firstLang = document.querySelector("li:first-child");
+    firstLang.outerHTML = "<li>typescript</li>";
+
+    // remove
+    const lastLang = document.querySelector("li:last-child");
+    lastLang.remove();
+  </script>
+</html>
