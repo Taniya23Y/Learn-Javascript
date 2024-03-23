@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Increment & Decrement Project</title>
+    <!-- TODO: style css  -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- TODO: tailwind css  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- TODO: remix icon cdn  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#channelName">Channel Name</a>
+    </nav>
+
+    <div
+      class="w-[100vw] h-[90vh] flex flex-col items-center justify-center bg-[#344151] gap-10"
+    >
+      <div class="text-[#0398d4] font-medium text-[20px]">
+        Increment And Decrement
+      </div>
+      <div class="bg-white flex text-[#344151] rounded-sm gap-12 p-3 px-5">
+        <!-- negative button  -->
+        <button onclick="decrement()" class="border-r-2 border-[#bfbfbf] pr-5">
+          <i class="ri-subtract-line"></i>
+        </button>
+
+        <div id="counter" class="font-bold">
+            0
+        </div>
+
+        <!-- positive button  -->
+        <button onclick="increment()" class="border-l-2 border-[#bfbfbf] pl-5">
+          <i class="ri-add-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- TODO: font awesome  -->
+    <script
+      src="https://kit.fontawesome.com/58a81065e.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- TODO: script link  -->
+    <script src="script.js"></script>
+  </body>
+</html>
