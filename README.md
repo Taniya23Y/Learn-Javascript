@@ -1,2 +1,2 @@
 # Learn-Javascript
-Title: Dive into Web Development: Learn Javascript Here! 🚀
+Title: Dive into Web Development: Learn Javascript! 🚀
